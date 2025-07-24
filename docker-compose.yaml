@@ -1,0 +1,34 @@
+services:
+  # Backend service for Golang
+  airline-voucher-seat-be:
+    build:
+      context: ./airline-voucher-seat-be
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./airline-voucher-seat-be/.env
+    volumes:
+      - ./airline-voucher-seat-be/data:/app/data
+    networks:
+      - airline-voucher-seat-net
+    restart: always
+
+  # Frontend service for Next.js
+  airline-voucher-seat-fe:
+    build:
+      context: ./airline-voucher-seat-fe
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./airline-voucher-seat-fe/.env
+    networks:
+      - airline-voucher-seat-net
+    depends_on:
+      - airline-voucher-seat-be
+    restart: always
+
+networks:
+  airline-voucher-seat-net:
+    driver: bridge
