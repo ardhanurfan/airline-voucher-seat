@@ -155,7 +155,7 @@ export default function Home() {
             <p className="text-lg">
               Seats:{" "}
               <span className="font-mono">
-                {result[0]}, {result[1]}, {result[1]}
+                {result[0]}, {result[1]}, {result[2]}
               </span>
             </p>
           </div>
